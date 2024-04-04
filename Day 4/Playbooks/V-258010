@@ -1,0 +1,18 @@
+---
+- name: Update sshd_config to include UsePrivilegeSeparation sandbox
+  hosts: localhost
+  become: yes  # Elevates privilege to root to ensure we can edit sshd_config
+  tasks:
+    - name: Ensure UsePrivilegeSeparation is set to sandbox
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?UsePrivilegeSeparation'
+        line: 'UsePrivilegeSeparation sandbox'
+        state: present
+      notify: restart ssh
+
+  handlers:
+    - name: restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
