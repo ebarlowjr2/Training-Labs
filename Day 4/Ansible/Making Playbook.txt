@@ -1,0 +1,3 @@
+cd ~/ansible_playbooks
+vi (playbook name).yaml
+Example V258010.yaml
