@@ -5,3 +5,5 @@ mkdir ~/ansible_playbooks
 
 
 filter = sshd_config.d
+
+ansible-playbook (playbook Name)
