@@ -4,8 +4,7 @@
   become: yes
   tasks:
     - name: Check settings in sshd_config
-      ansible.builtin.command:
-        cmd: "grep -E '^{{ item.key }}\s+{{ item.value }}$' /etc/ssh/sshd_config"
+      ansible.builtin.command: "grep -E '^{{ item.key }}\\s+{{ item.value }}$' /etc/ssh/sshd_config"
       loop:
         - { key: "PrintLastLog", value: "yes" }
         - { key: "StrictModes", value: "yes" }
@@ -17,7 +16,7 @@
       loop_control:
         label: "{{ item.key }}"
       register: check_results
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Show verification results
       ansible.builtin.debug:
