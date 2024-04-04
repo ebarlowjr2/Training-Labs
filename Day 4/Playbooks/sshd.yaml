@@ -1,1 +1,60 @@
+---
+- name: Update sshd_config with specific settings
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Ensure PrintLastLog is set to yes
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*PrintLastLog\s+.*$'
+        line: 'PrintLastLog yes'
+        state: present
+
+    - name: Ensure StrictModes is set to yes
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*StrictModes\s+.*$'
+        line: 'StrictModes yes'
+        state: present
+
+    - name: Ensure X11Forwarding is set to no
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*X11Forwarding\s+.*$'
+        line: 'X11Forwarding no'
+        state: present
+
+    - name: Ensure IgnoreUserKnownHosts is set to yes
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*IgnoreUserKnownHosts\s+.*$'
+        line: 'IgnoreUserKnownHosts yes'
+        state: present
+
+    - name: Ensure IgnoreRhosts is set to yes
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*IgnoreRhosts\s+.*$'
+        line: 'IgnoreRhosts yes'
+        state: present
+
+    - name: Ensure KerberosAuthentication is set to no
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*KerberosAuthentication\s+.*$'
+        line: 'KerberosAuthentication no'
+        state: present
+
+    - name: Ensure GSSAPIAuthentication is set to no
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^\s*#?\s*GSSAPIAuthentication\s+.*$'
+        line: 'GSSAPIAuthentication no'
+        state: present
+
+  handlers:
+    - name: restart sshd
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
 
