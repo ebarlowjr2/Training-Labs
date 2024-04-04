@@ -1,0 +1,2 @@
+cd ~/ansible_playbooks
+vi (playbook name).yaml
