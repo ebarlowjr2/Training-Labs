@@ -4,6 +4,6 @@ ansible --version
 mkdir ~/ansible_playbooks
 
 
-filter = sshd_config.d
 
+********************** Running Ansible******************
 ansible-playbook (playbook Name)
