@@ -1,9 +1,0 @@
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-yum install ansible-core
-ansible --version
-mkdir ~/ansible_playbooks
-
-
-
-********************** Running Ansible******************
-ansible-playbook (playbook Name)
